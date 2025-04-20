@@ -1,0 +1,46 @@
+{
+  "customerUsers": {
+    "id": 1,
+    "firstName": "Mr",
+    "lastName": "Bean",
+    "phoneNumber": "83887689"
+  },
+  "RestaurantUsers": {
+    "id": 1,
+    "firstName": "John",
+    "lastName": "antony",
+    "phoneNumber": "83887689",
+    "role": "waiter || chef || admin"
+  },
+
+  "menus": {
+    "id": 2,
+    "category": "breakfast || lunch || dinner",
+    "name": "veg biryani",
+    "menuImageUrl": "https:///",
+    "price": 100,
+    "description": "xyz",
+    "discounted price": 50,
+    "type": "Veg || Non-Veg"
+  },
+
+  "tables": {
+    "id": 3,
+    "number": 5,
+    "capacity": 4,
+    "location": "Right corner table",
+    "qrImageUrl": "htttp...."
+  },
+
+  "orders": {
+    "id": 1,
+    "tableNo": 3,
+    "dateTime": 1743926471,
+    "menuNames": ["Item 1", "Item 2"],
+    "totalAmount": 129,
+    "timeToServe": 1743926471,
+    "status": "Requested|| Preparing || Ready ||Served || Paid",
+    "paymentMethod": "Cash || UPI || Card",
+    "feedback": "feedback"
+  }
+}
