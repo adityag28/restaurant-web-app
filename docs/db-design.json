@@ -10,7 +10,9 @@
     "firstName": "John",
     "lastName": "antony",
     "phoneNumber": "83887689",
-    "role": "waiter || chef || admin"
+    "role": "waiter || chef || admin",
+    "email": "",
+    "password" :"systemgenerated123"
   },
 
   "menus": {

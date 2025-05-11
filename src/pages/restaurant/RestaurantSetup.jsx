@@ -3,7 +3,6 @@ import { MdTableRestaurant } from "react-icons/md";
 import { FaImage } from "react-icons/fa6";
 import { MdMenuBook } from "react-icons/md";
 import { FaUsers } from "react-icons/fa";
-import { IoQrCode } from "react-icons/io5";
 import { Link } from 'react-router-dom';
 
 const RestaurantSetup = () => {

@@ -12,52 +12,61 @@ import CustomerOrderHistory from './pages/customer/CustomerOrderHistory';
 import GetBill from './pages/customer/GetBill';
 import CustomerReviewMenu from './pages/customer/CustomerReviewMenu';
 import CustomerOrderedPlacedSuccess from './pages/customer/CustomerOrderedPlacedSuccess';
-import CustomerDetailOrderHistory from './pages/customer/CustomerDetailOrderHistory';
+import CustomerOrderHistoryDetail from './pages/customer/CustomerOrderHistoryDetail';
 import RestaurantMainLayout from './components/layouts/RestaurantMainLayout';
 import RestaurantAdminDashboard from './pages/restaurant/RestaurantAdminDashboard';
 import RestaurantSetup from './pages/restaurant/RestaurantSetup';
-import RestaurantOrderBoardDetail from './pages/restaurant/RestaurantOrderBoardDetail'
 import BussinessInfo from './pages/restaurant/BussinessInfo';
 import ManageTable from './pages/restaurant/ManageTable';
 import ManageMenu from './pages/restaurant/ManageMenu';
 import ManageStaff from './pages/restaurant/ManageStaff';
+import { Provider } from 'react-redux';
+import { appStore, persistor } from './store/appStore';
+import WaiterOrderBoard from './pages/restaurant/WaiterOrderBoard';
+import KitchenOrderBoard from './pages/restaurant/KitchenOrderBoard';
+import RestaurantOrderBoard from './pages/restaurant/RestaurantOrderBoard';
+import { PersistGate } from 'redux-persist/integration/react';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/" element={<CustomerLoginForm />} />
-        <Route path="/restaurant-login" element={<RestaurantLoginForm />} />
+    <Provider store={appStore}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          <Routes>
+            <Route path="/" element={<CustomerLoginForm />} />
+            <Route path="/restaurant-login" element={<RestaurantLoginForm />} />
 
-        {/* Customer  Layout after login */}
-        <Route path="/app" element={<CustomerMainLayout />}>
-          <Route index element={<CustomerDashboard />} />
-          <Route path="dashboard" element={<CustomerDashboard />} />
-          <Route path="menu" element={<Menu />} />
-          <Route path="orderhistory" element={<CustomerOrderHistory />} />
-          <Route path="getbill" element={<GetBill />} />
-          <Route path="reviewmenu" element={<CustomerReviewMenu />} />
-          <Route path="ordersuccess" element={<CustomerOrderedPlacedSuccess />} />
-          <Route path="orderhistorydetail" element={<CustomerDetailOrderHistory />} />
-        </Route>
+            {/* Customer  Layout after login */}
+            <Route path="/app" element={<CustomerMainLayout />}>
+              <Route index element={<CustomerDashboard />} />
+              <Route path="dashboard" element={<CustomerDashboard />} />
+              <Route path="menu" element={<Menu />} />
+              <Route path="orderhistory" element={<CustomerOrderHistory />} />
+              <Route path="getbill" element={<GetBill />} />
+              <Route path="reviewmenu" element={<CustomerReviewMenu />} />
+              <Route path="ordersuccess" element={<CustomerOrderedPlacedSuccess />} />
+              <Route path="orderhistorydetail" element={<CustomerOrderHistoryDetail />} />
+            </Route>
 
-        {/* Restaurant  Layout after login */}
-        <Route path="/restaurant" element={<RestaurantMainLayout />} >
-          <Route index element={<RestaurantAdminDashboard />} />
-          <Route path="orderboard" element={<RestaurantAdminDashboard />} />
-          <Route path="setup" element={<RestaurantSetup />} />
-          <Route path="orderboarddetail" element={<RestaurantOrderBoardDetail />} />
-          <Route path="businessform" element={<BussinessInfo />} />
-          <Route path="managetable" element={<ManageTable />} />
-          <Route path="managemenu" element={<ManageMenu />} />
-          <Route path="managestaff" element={<ManageStaff />} />
-        </Route>
+            {/* Restaurant  Layout after login */}
+            <Route path="/restaurant" element={<RestaurantMainLayout />} >
+              <Route index element={<RestaurantAdminDashboard />} />
+              <Route path="orderboard" element={<RestaurantAdminDashboard />} />
+              <Route path="setup" element={<RestaurantSetup />} />
+              <Route path="orderboarddetail" element={<RestaurantOrderBoard />} />
+              <Route path="businessform" element={<BussinessInfo />} />
+              <Route path="managetable" element={<ManageTable />} />
+              <Route path="managemenu" element={<ManageMenu />} />
+              <Route path="managestaff" element={<ManageStaff />} />
+              <Route path="kitchen" element={<KitchenOrderBoard />} />
+              <Route path="waiter" element={<WaiterOrderBoard />} />
+            </Route>
 
-
-
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </Router>
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Router>
+      </PersistGate>
+    </Provider>
   </StrictMode>
 );
 

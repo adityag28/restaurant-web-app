@@ -1,31 +1,33 @@
-import React from 'react'
+import { useSelector } from 'react-redux'
 
 const MenuInstructions = () => {
+
+    const menuItems = useSelector((store) => store.menu)
+    const subTotal = menuItems.reduce((acc, menu) => acc + menu.price * menu.quantity, 0)
+    const sgst = Math.round(subTotal * 0.09)
+    const cgst = Math.round(subTotal * 0.09)
+    const grandTotal = Math.round(subTotal + sgst + cgst)
+
     return (
-        <div className='w-full'>
-            {/* Instructions Textarea */}
+        <div className="flex flex-col gap-6 sm-mt-2 lg:mt-20 px-4 sm:px-6 lg:px-1 w-full max-w-3xl mx-auto">
             <textarea
                 placeholder='Any Instructions'
-                className='w-full border border-gray-300 rounded-md mb-5 mt-6 resize-none p-3 text-sm sm:text-base'
-                rows="5"
+                className='h-32 sm:h-36 border-2 border-gray-300 rounded-md   resize-none p-3 text-sm sm:text-base'
             />
+            <hr className="border-t border-gray-300 mb-2" />
 
-            {/* Divider */}
-            <hr className="border-t border-gray-300 mb-4" />
-
-            {/* Bill Summary */}
-            <div className='flex justify-between text-sm sm:text-base font-medium'>
-                <div className='space-y-2'>
-                    <p>Items Count</p>
-                    <p>SGST</p>
-                    <p>CGST</p>
-                    <p className="font-semibold">Total Amount</p>
+            <div className='flex  sm:flex-row justify-between text-sm sm:text-base font-medium mb-2'>
+                <div className='space-y-2 sm:space-y-0 sm:w-1/2'>
+                    <p>Total Amount</p>
+                    <p>SGST - (9%)</p>
+                    <p>CGST - (9%)</p>
+                    <p className="font-semibold">Grand Total</p>
                 </div>
-                <div className='space-y-2 text-right'>
-                    <p>₹199</p>
-                    <p>₹5</p>
-                    <p>₹5</p>
-                    <p className="font-semibold">₹209</p>
+                <div className='space-y-2 sm:space-y-0 sm:w-1/2 text-right'>
+                    <p>₹{subTotal}</p>
+                    <p>₹{sgst} </p>
+                    <p>₹{cgst} </p>
+                    <p className="font-semibold">₹{grandTotal}</p>
                 </div>
             </div>
         </div>

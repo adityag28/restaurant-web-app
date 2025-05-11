@@ -2,5 +2,6 @@
 @import "flowbite/src/themes/default";
 
 body {
-  font-family: "Roboto", sans-serif;
+  /* font-family: "Roboto", sans-serif; */
+  font-family: "Montserrat", sans-serif;
 }

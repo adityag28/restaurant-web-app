@@ -22,8 +22,7 @@ const CustomerOrderedPlacedSuccess = () => {
             <p className='text-center text-lg sm:text-xl font-semibold text-green-600 mb-4'>
                 Thank you!
             </p>
-
-            <Button
+             <Button
                 text='View Status'
                 onClick={handleViewStatusClick}
                 className='p-3 w-full max-w-xs text-sm sm:text-base'

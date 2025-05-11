@@ -3,7 +3,7 @@ import Button from '../../components/common/Button'
 import { Link } from 'react-router-dom'
 import { MdArrowBack } from "react-icons/md";
 
-const RestaurantOrderBoardDetail = () => {
+const RestaurantOrderBoard = () => {
     return (
         <div className='bg-amber-50 min-h-screen p-4 sm:p-6'>
             <Link to="/restaurant/orderboard">
@@ -38,4 +38,4 @@ const RestaurantOrderBoardDetail = () => {
     )
 }
 
-export default RestaurantOrderBoardDetail
+export default RestaurantOrderBoard

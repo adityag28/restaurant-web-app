@@ -1,13 +1,47 @@
-import React from 'react'
-import Button from '../../components/common/Button'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../../components/common/Button';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { getDocs, collection } from 'firebase/firestore';
+import { auth, db } from '../../firebase';
 
 const RestaurantLoginForm = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
-    const handleRestaurantLogin = () => {
-        navigate("/restaurant")
-    }
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setError('');
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const uid = userCredential.user.uid;
+
+            const snapshot = await getDocs(collection(db, 'restaurantUsers'));
+            const matchedUser = snapshot.docs.find(doc => doc.data().uid === uid);
+
+            if (matchedUser) {
+                const role = matchedUser.data().role;
+                console.log('Logged in as:', role);
+
+                if (role === 'waiter') {
+                    navigate('/restaurant/waiter');
+                } else if (role === 'kitchen') {
+                    navigate('/restaurant/kitchen');
+                } else {
+                    setError('Invalid role in Firestore.');
+                }
+            } else {
+                console.log('Logged in as: admin');
+                navigate('/restaurant');
+            }
+
+        } catch (err) {
+            setError(err.message);
+        }
+    };
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-amber-50 px-4">
@@ -15,6 +49,7 @@ const RestaurantLoginForm = () => {
                 <h1 className="font-bold text-2xl text-center mb-6 text-gray-800">
                     Restaurant Login
                 </h1>
+
                 <form className="space-y-4">
                     <div>
                         <label htmlFor="email" className="text-sm font-medium text-gray-700">
@@ -23,6 +58,8 @@ const RestaurantLoginForm = () => {
                         <input
                             type="email"
                             id="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
                             placeholder="Enter your email"
                             className="w-full p-3 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400"
                         />
@@ -34,19 +71,22 @@ const RestaurantLoginForm = () => {
                         <input
                             type="password"
                             id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             placeholder="Enter your password"
                             className="w-full p-3 mt-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-amber-400"
                         />
                     </div>
+                    {error && <p className="text-red-500 text-sm">{error}</p>}
                     <Button
                         text="Login"
-                        onClick={handleRestaurantLogin}
                         className="w-full p-3 mt-4 text-white bg-amber-400 hover:bg-amber-500 rounded-md"
+                        onClick={handleLogin}
                     />
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default RestaurantLoginForm
+export default RestaurantLoginForm;

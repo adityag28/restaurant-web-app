@@ -1,29 +1,53 @@
-import { useState } from "react"
-import Button from "./Button"
+import { useDispatch, useSelector } from "react-redux";
+import { addMenu, removeMenu } from "../../store/menuSlice";
+import Button from "./Button";
 
-const AddItemCounter = () => {
-    const [itemCount, setItemCount] = useState(0)
+const AddItemCounter = ({ menu }) => {
+    const dispatch = useDispatch();
 
-    const handleItemIncrement = () => setItemCount(prev => prev + 1)
-    const handleItemDecrement = () => setItemCount(prev => prev - 1)
+    // Getting current quantity from Redux
+    const quantity = useSelector((state) => {
+        const item = state.menu.find((i) => i.id === menu.id);
+        return item?.quantity || 0;
+    });
+
+    const handleAddMenuItem = () => {
+        dispatch(addMenu(menu));
+    };
+
+    const handleIncreaseMenuItems = () => {
+        dispatch(addMenu(menu));
+    };
+
+    const handleDecreaseMenuItems = () => {
+        dispatch(removeMenu(menu));
+    };
 
     return (
         <div className="flex items-center gap-4">
-            <Button
-                text='+'
-                onClick={handleItemIncrement}
-                className='py-2 px-4 text-xl sm:text-2xl w-12 sm:w-16'
-            />
-            <p className='text-lg sm:text-xl'>
-                Add Item : {itemCount}
-            </p>
-            <Button
-                text='-'
-                onClick={handleItemDecrement}
-                className='py-2 px-4 text-xl sm:text-2xl w-12 sm:w-16'
-            />
+            {quantity === 0 ? (
+                <Button
+                    text="Add"
+                    className="px-4 py-2 rounded"
+                    onClick={handleAddMenuItem}
+                />
+            ) : (
+                <div className="flex items-center space-x-2">
+                    <Button
+                        text="-"
+                        className="px-2 py-1 rounded"
+                        onClick={handleDecreaseMenuItems}
+                    />
+                    <span>{quantity}</span>
+                    <Button
+                        text="+"
+                        className="px-2 py-1 rounded"
+                        onClick={handleIncreaseMenuItems}
+                    />
+                </div>
+            )}
         </div>
-    )
-}
+    );
+};
 
-export default AddItemCounter
+export default AddItemCounter;

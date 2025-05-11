@@ -1,25 +1,25 @@
-import React from 'react'
+import Button from '../common/Button'
 
-const MobileLoginForm = ({ mobile, setMobile }) => {
+const MobileLoginForm = ({ formData, handleChange, handlePhoneNumberSubmit }) => {
 
     return (
         <div className="flex flex-col p-4  max-w-sm mx-auto rounded-md ">
-            <h1 className='font-bold text-2xl mb-4 text-center'>Enter your mobile number</h1>
-            <p className='text-gray-400 font-semibold mb-4 text-center'>
+            <h1 className='font-bold text-xl mb-4 text-center lg:text-2xl'>Enter your mobile number</h1>
+            <p className='text-gray-400 font-semibold mb-4 text-left lg-text-center'>
                 We'll send you a one-time password to your mobile number to log in
             </p>
-            <label htmlFor='mobile' className='text-lg font-semibold mb-2'>Mobile Number</label>
+            <label htmlFor="phoneNumber" className="block font-semibold mb-1">Mobile Number</label>
             <input
                 type="tel"
-                placeholder="Enter your mobile number"
-                maxLength='10'
-                pattern='[0-9]{10}'
-                id='mobile'
-                value={mobile}
-                onChange={(e) => setMobile(e.target.value)}
-                className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-orange-400"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                placeholder="Enter your phone number"
+                required
             />
-        </div>
+            <Button text='Send OTP' onClick={handlePhoneNumberSubmit} className="my-4 w-40" />
+        </div >
     )
 }
 

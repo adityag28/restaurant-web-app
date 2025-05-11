@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from '../../components/common/Button'
 import { Link } from 'react-router-dom'
 import { MdArrowBack } from 'react-icons/md'
-import { IoQrCode } from "react-icons/io5"
+import useManageTable from '../../hooks/useManageTable'
+
+
+
 
 const ManageTable = () => {
-    const [isPopupOpen, setIsPopupOpen] = useState(false)
+    const { isPopupOpen, setIsPopupOpen, formData, tables, handleChange, handleAddTableClick, handleUpdateTableClick, handleDeleteTableClick } = useManageTable()
 
     return (
         <div className='p-5 min-h-screen bg-amber-50'>
@@ -13,7 +16,7 @@ const ManageTable = () => {
                 <Link to="/restaurant/setup">
                     <div className='flex items-center gap-2'>
                         <MdArrowBack className='text-2xl mt-1' />
-                        <h1 className='text-xl font-bold'>Update Restaurant Table</h1>
+                        <h1 className='text-xl font-bold '>Update Restaurant Table</h1>
                     </div>
                 </Link>
                 <Button text='Add Table+' className="py-1 px-3" onClick={() => setIsPopupOpen(true)} />
@@ -23,6 +26,7 @@ const ManageTable = () => {
                 <table className='w-full text-center border-collapse'>
                     <thead>
                         <tr>
+                            <th className='border px-4 py-2'>Table Id</th>
                             <th className='border px-4 py-2'>Table No.</th>
                             <th className='border px-4 py-2'>Capacity</th>
                             <th className='border px-4 py-2'>Location</th>
@@ -30,18 +34,23 @@ const ManageTable = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className='h-10'>
-                            <td className='border px-4 py-2'>1</td>
-                            <td className='border px-4 py-2'>4</td>
-                            <td className='border px-4 py-2'>Ground Floor Right Corner</td>
-                            <td className='border px-4 py-2'>
-                                <div className='flex items-center justify-center gap-2'>
-                                    <Button text='✎' className="py-1 px-3" />
-                                    <Button text='✕' className="py-1 px-3" />
-                                    <Button text={<IoQrCode className='text-2xl' />} className="py-2.5 px-2" />
-                                </div>
-                            </td>
-                        </tr>
+                        {tables.map((table) => (
+                            <tr key={table.id} className='h-10'>
+                                <td className='border px-4 py-2'>{table.tableId}</td>
+                                <td className='border px-4 py-2'>{table.tableNumber}</td>
+                                <td className='border px-4 py-2'>{table.capacity}</td>
+                                <td className='border px-4 py-2'>{table.location}</td>
+                                <td className='border px-4 py-2'>
+                                    <div className='flex items-center justify-center gap-2'>
+                                        <Button text='✎' className="py-1 px-3"
+                                            onClick={() => handleUpdateTableClick(table)}
+                                        />
+                                        <Button text='✕' className="py-1 px-3" onClick={() => handleDeleteTableClick(table.id)} />
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
+
                     </tbody>
                 </table>
             </div>
@@ -51,9 +60,38 @@ const ManageTable = () => {
                     <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
                         <h2 className="text-xl font-bold mb-4">Add Table</h2>
                         <form className="space-y-4">
-                            <input type="text" placeholder="Table Number" className="w-full p-2 border rounded" />
-                            <input type="number" placeholder="Capacity" className="w-full p-2 border rounded" />
-                            <input type="text" placeholder="Location" className="w-full p-2 border rounded" />
+                            <input
+                                type="text"
+                                placeholder="Table Id"
+                                className="w-full p-2 border rounded"
+                                name='tableId'
+                                value={formData.tableId}
+                                onChange={handleChange}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Table Number"
+                                className="w-full p-2 border rounded"
+                                name='tableNumber'
+                                value={formData.tableNumber}
+                                onChange={handleChange}
+                            />
+                            <input
+                                type="number"
+                                placeholder="Capacity"
+                                className="w-full p-2 border rounded"
+                                name='capacity'
+                                value={formData.capacity}
+                                onChange={handleChange}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Location"
+                                className="w-full p-2 border rounded"
+                                name='location'
+                                value={formData.location}
+                                onChange={handleChange}
+                            />
                             <div className="flex justify-end gap-2">
                                 <Button
                                     text="Cancel"
@@ -63,7 +101,7 @@ const ManageTable = () => {
                                 <Button
                                     text="Save"
                                     className="bg-amber-400 hover:bg-amber-500"
-                                    onClick={() => setIsPopupOpen(false)}
+                                    onClick={handleAddTableClick}
                                 />
                             </div>
                         </form>
