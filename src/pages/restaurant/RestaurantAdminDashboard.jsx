@@ -12,7 +12,7 @@ const RestaurantAdminDashboard = () => {
                 const querySnapshot = await getDocs(collection(db, 'orders'));
                 const orderList = querySnapshot.docs.map(doc => ({
                     ...doc.data(),
-                    id: doc.id, 
+                    id: doc.id,
                 }));
                 setOrders(orderList);
             } catch (error) {
@@ -49,32 +49,34 @@ const RestaurantAdminDashboard = () => {
             <div className="flex flex-col lg:flex-row gap-6 w-full">
 
                 <div className="flex flex-col border p-5 rounded-md w-full lg:w-1/2 bg-white shadow">
-                    <div className="flex flex-col sm:flex-row justify-between items-center mb-5">
+                    <div className="flex  sm:flex-row justify-between items-center mb-5">
                         <p className="font-semibold text-lg">Ongoing Orders</p>
                         <p className="font-semibold text-lg"> {ongoingCount} | INR {ongoingTotalAmount}</p>
                     </div>
+                    <div className="overflow-y-auto lg:max-h-[240px] max-h-[340px] pr-2">
 
-                    {orders
-                        .filter(order => order.status === 'Order placed' || order.status === 'Preparing' || order.status === 'Ready')
-                        .map(order => (
-                            <OrderStatusCard
-                                key={order.id}
-                                tableNo={order.tableNo}
-                                status={order.status}
-                                orderId={order.id}
-                                dateTime={order.dateTime}
-                                menus={order.menuNames}
-                                totalAmount={order.totalAmount}
-                            />
-                        ))}
+                        {orders
+                            .filter(order => order.status === 'Order placed' || order.status === 'Preparing' || order.status === 'Ready')
+                            .map(order => (
+                                <OrderStatusCard
+                                    key={order.id}
+                                    tableNo={order.tableNo}
+                                    status={order.status}
+                                    orderId={order.id}
+                                    dateTime={order.dateTime}
+                                    menus={order.menuNames}
+                                    totalAmount={order.totalAmount}
+                                />
+                            ))}
+                    </div>
                 </div>
 
                 <div className="flex flex-col border p-5 rounded-md w-full lg:w-1/2 bg-white shadow">
-                    <div className="flex flex-col sm:flex-row justify-between items-center mb-5">
-                        <p className="font-semibold text-lg">Completed Orders</p>
-                        <p className="font-semibold text-lg">{completedCount} | INR {completedTotalAmount}</p>
+                    <div className="flex  sm:flex-row justify-between items-center mb-5">
+                        <p className="font-semibold text-base lg:text-lg">Completed Orders</p>
+                        <p className="font-semibold text-base lg:text-lg">{completedCount} | INR {completedTotalAmount}</p>
                     </div>
-                    <div className="overflow-y-auto max-h-[500px] pr-2">
+                    <div className="overflow-y-auto lg:max-h-[240px] max-h-[340px] pr-2">
                         {orders
                             .filter(order => order.status === 'Completed')
                             .map(order => (

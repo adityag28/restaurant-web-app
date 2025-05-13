@@ -9,7 +9,7 @@ const BussinessInfo = () => {
             <Link to="/restaurant/setup">
                 <div className='flex items-center gap-2 '>
                     <MdArrowBack className='text-2xl sm:text-3xl' />
-                    <h1 className='text-xl sm:text-2xl md:text-3xl font-bold'>
+                    <h1 className=' sm:text-lg md:text-2xl  lg:3xl font-bold'>
                         Update Restaurant Information
                     </h1>
                 </div>

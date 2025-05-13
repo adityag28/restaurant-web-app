@@ -19,11 +19,9 @@ const HistoryInfo = ({ tableNo, status, orderId, dateTime, menus = [], totalAmou
         }));
     };
 
-
     const formattedDate = dateTime instanceof Date
         ? dateTime.toLocaleString()
         : (dateTime?.toDate?.().toLocaleString?.() || 'N/A');
-
 
     return (
         <div className="space-y-4">
@@ -36,14 +34,15 @@ const HistoryInfo = ({ tableNo, status, orderId, dateTime, menus = [], totalAmou
                     onClick={handleClick}
                     className="block p-4"
                 >
-                    <p className="font-semibold text-lg sm:text-xl mb-1">
-                        Order No: {orderId} | Table No: {tableNo}
+                    <p className="text-md mb-2">
+                        <span className="font-semibold">Order No : </span>
+                        {orderId}
                     </p>
-                    <p className="text-sm sm:text-base text-gray-500 mb-4">
-                        Date & Time: {formattedDate}
-                    </p>
+                    <p className="text-md mb-2"><span className="font-semibold">Table No : </span>{tableNo}</p>
+                    <p className="text-md mb-2"><span className='font-semibold'>Date & Time : </span> {formattedDate}</p>
+                    <p className="text-md mb-2"><span className="font-semibold">Items : </span> {menus.length}</p>
                     <div className="mb-4">
-                        <ul className="list-disc list-inside text-gray-800 space-y-1">
+                        <ul className="list-disc list-inside  space-y-1">
                             {Array.isArray(menus)
                                 ? menus.map((item, idx) => (
                                     <li key={idx}>{item}</li>
@@ -52,10 +51,7 @@ const HistoryInfo = ({ tableNo, status, orderId, dateTime, menus = [], totalAmou
                         </ul>
                     </div>
                     <hr className="my-3" />
-                    <div className="flex justify-between text-lg sm:text-xl font-semibold mb-2">
-                        <p>Total Amount</p>
-                        <p>₹{totalAmount}</p>
-                    </div>
+                    <p className="text-md mb-2"><span className="font-semibold">Total Amount : </span>₹{totalAmount}</p>
                 </Link>
 
             </div>

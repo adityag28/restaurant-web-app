@@ -26,6 +26,7 @@ import WaiterOrderBoard from './pages/restaurant/WaiterOrderBoard';
 import KitchenOrderBoard from './pages/restaurant/KitchenOrderBoard';
 import RestaurantOrderBoard from './pages/restaurant/RestaurantOrderBoard';
 import { PersistGate } from 'redux-persist/integration/react';
+import OrderHistory from './pages/restaurant/OrderHistory';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -60,6 +61,7 @@ createRoot(document.getElementById('root')).render(
               <Route path="managestaff" element={<ManageStaff />} />
               <Route path="kitchen" element={<KitchenOrderBoard />} />
               <Route path="waiter" element={<WaiterOrderBoard />} />
+              <Route path="orderhistory" element={<OrderHistory />} />
             </Route>
 
             <Route path="*" element={<Navigate to="/" />} />

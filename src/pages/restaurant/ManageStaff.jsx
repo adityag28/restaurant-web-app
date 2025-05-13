@@ -24,7 +24,9 @@ const ManageStaff = () => {
                 <Link to="/restaurant/setup">
                     <div className='flex items-center gap-2'>
                         <MdArrowBack className='text-2xl mt-1' />
-                        <h1 className='text-xl font-bold'>Update Restaurant Staff</h1>
+                        <h1 className=' sm:text-lg md:text-2xl  lg:3xl font-bold'>
+                            Update  Staff
+                        </h1>
                     </div>
                 </Link>
                 <Button text='Add Staff+' className="py-1 px-3" onClick={() => setIsPopupOpen(true)} />
@@ -66,8 +68,10 @@ const ManageStaff = () => {
                 </table>
             </div>
             {isPopupOpen && (
-                <div className="fixed inset-0 bg-opacity-50 flex justify-center items-center z-50">
-                    <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                <div className="fixed inset-0 z-50 flex justify-center items-center">
+                    <div className="absolute inset-0 bg-black opacity-50"></div>
+
+                    <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
                         <h2 className="text-xl font-bold mb-4">Add Staff</h2>
                         <form className="space-y-4">
                             <input

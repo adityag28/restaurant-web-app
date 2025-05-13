@@ -66,11 +66,19 @@ const OngoingCard = ({ menuItems }) => {
             ) : (
                 <div className='grid gap-4'>
                     <div className='flex flex-col border-2 border-orange-400 rounded-md p-2'>
-                        <p className='text-lg font-semibold'>Order Id: {latestOrder.id}</p>
-                        <p className='text-lg'>Table No: {latestOrder.tableNo}</p>
-                        <span className="bg-yellow-100 text-yellow-800 w-50 text-md font-semibold me-2 p-2 rounded-sm ">
-                            Status : {latestOrder.status}
-                        </span>                        <ul className='list-disc mx-5 p-2'>
+                        <p className="text-md mb-2">
+                            <span className="font-semibold">Order No : </span>
+                            {latestOrder.id}
+                        </p>
+                        <p className="text-md mb-2">
+                            <span className="font-semibold">Table No : </span>
+                            {latestOrder.tableNo}
+                        </p>
+                        <p className='text-md mb-2 bg-yellow-100 text-yellow-800  w-50 p-2 rounded-sm '>
+                            <span className="font-semibold">Stauts : </span>
+                            {latestOrder.status}
+                        </p>
+                        <ul className='list-disc mx-5 p-2'>
                             {menuItems.map((menu, index) => (
                                 <li key={index}>{menu.name}</li>
                             ))}

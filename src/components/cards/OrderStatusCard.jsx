@@ -23,18 +23,24 @@ const OrderStatusCard = ({ tableNo, status, orderId, dateTime, menus = [], total
         : (dateTime?.toDate?.().toLocaleString?.() || 'N/A');
 
     return (
-        <div className="hover:border-2 border-gray-300 rounded-md bg-amber-50 gap-4 mb-5 cursor-pointer">
+        <div className=" border-1 border-black rounded-md bg-amber-50 gap-4 mb-5 cursor-pointer">
             <Link
                 to="/restaurant/orderboarddetail"
                 onClick={handleClick}
                 className="block p-4"
             >
-                <h3 className="font-semibold">Order No: {orderId} | Table No: {tableNo}</h3>
-                <p className="text-sm">Date & Time: {formattedDate}</p>
-                <p className="text-sm">Items: {menus.join(', ')}</p>
-                <p className="text-sm">Total Amount: ₹{totalAmount}</p>
-                <p className="text-sm">Time Taken to Serve: {timeToServe} mins</p>
-                <p className="text-sm font-medium">Status: {status}</p>
+                <p className="text-md mb-2">
+                    <span className="font-semibold">Order No : </span>
+                    {orderId}
+                </p>
+                <p className="text-md mb-2"><span className="font-semibold">Table No : </span>{tableNo}</p>
+                <p className="text-md mb-2"><span className='font-semibold'>Date & Time : </span> {formattedDate}</p>
+                <p className="text-md mb-2"><span className='font-semibold'>Items : </span> {menus.join(', ')}</p>
+                <p className="text-md mb-2"><span className='font-semibold'>Total Amount : </span>₹{totalAmount}</p>
+                <p className="text-md mb-2"><span className='font-semibold'> Time Taken to Serve : </span>{timeToServe} </p>
+                <p className='text-md mb-2 bg-yellow-100 text-yellow-800  w-45 p-2 rounded-sm '>
+                    <span className="font-semibold">Stauts : </span>{status}
+                </p>
             </Link>
         </div>
     );
