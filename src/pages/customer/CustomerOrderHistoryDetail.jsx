@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { MdArrowBack } from "react-icons/md";
 import HistoryInfo from '../../components/common/HistoryInfo';
+import HistoryInfoDetail from '../../components/common/HistoryInfoDetail';
 
 const CustomerOrderHistoryDetail = () => {
     return (
@@ -13,17 +14,7 @@ const CustomerOrderHistoryDetail = () => {
                     </h1>
                 </div>
             </Link>
-
-            <HistoryInfo />
-
-            <div className="max-w-3xl mx-auto mt-6 bg-white rounded-md shadow-md p-4 sm:p-6 border border-orange-300">
-                <p className="font-semibold text-lg sm:text-xl text-gray-700 mb-2">
-                    Time Taken to Serve: <span className="text-black">15 mins</span>
-                </p>
-                <p className="font-semibold text-lg sm:text-xl text-gray-700">
-                    Your Feedback: <span className="text-black">Overall it was good</span>
-                </p>
-            </div>
+            <HistoryInfoDetail />
         </div>
     );
 };

@@ -45,7 +45,7 @@ const CustomerReviewMenu = ({ isOpen }) => {
                     <Button
                         text='Place your order'
                         onClick={handleOrderClick}
-                        className='w-full sm:w-auto px-6 py-2'
+                        className='lg:w-full sm:w-28 lg:px-6 ml-4 lg:ml-0 lg:py-2'
                     />
                 </div>
             </div>

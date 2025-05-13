@@ -26,7 +26,7 @@ const MenuItem = ({ menuItems }) => {
                                     <p className="text-sm sm:text-base md:text-lg text-gray-700 ">₹ {menu.price}</p>
                                     <p className="text-sm sm:text-base md:text-lg text-gray-700 ">{menu.description}</p>
                                 </div>
-                                <div className="w-full sm:w-auto mt-4 sm:mt-0 flex items-center justify-center">
+                                <div className="w-full sm:w-auto mt-4 sm:mt-0 flex lg:mt-12">
                                     <AddItemCounter menu={menu} />
                                 </div>
                             </div>

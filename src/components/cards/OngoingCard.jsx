@@ -68,10 +68,9 @@ const OngoingCard = ({ menuItems }) => {
                     <div className='flex flex-col border-2 border-orange-400 rounded-md p-2'>
                         <p className='text-lg font-semibold'>Order Id: {latestOrder.id}</p>
                         <p className='text-lg'>Table No: {latestOrder.tableNo}</p>
-                        <p className='text-lg'>Status: {latestOrder.status}</p>
-
-                        <p className='text-lg mt-2'>Order Items -</p>
-                        <ul className='list-disc mx-5 p-2'>
+                        <span className="bg-yellow-100 text-yellow-800 w-50 text-md font-semibold me-2 p-2 rounded-sm ">
+                            Status : {latestOrder.status}
+                        </span>                        <ul className='list-disc mx-5 p-2'>
                             {menuItems.map((menu, index) => (
                                 <li key={index}>{menu.name}</li>
                             ))}
