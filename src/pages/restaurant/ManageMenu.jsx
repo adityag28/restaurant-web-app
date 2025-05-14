@@ -19,8 +19,8 @@ const ManageMenu = () => {
                 </Link>
                 <Button text='Add Menu+' className="py-1 px-3" onClick={() => setIsPopupOpen(true)} />
             </div>
+            <div className="overflow-y-auto lg:max-h-[400px] max-h-[340px] pr-2">
 
-            <div className="overflow-x-auto">
                 <table className='w-full text-center border-collapse'>
                     <thead>
                         <tr>
@@ -59,106 +59,108 @@ const ManageMenu = () => {
                     </tbody>
                 </table>
             </div>
-            {isPopupOpen && (
-                <div className="fixed inset-0 z-50 flex justify-center items-center">
-                    <div className="absolute inset-0 bg-black opacity-50"></div>
-                    <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-md ">
-                        <h2 className="text-xl font-bold mb-2">Add Menu</h2>
-                        <form className="space-y-4">
-                            <input
-                                type="text"
-                                placeholder="Menu Id"
-                                className="w-full p-2 border rounded"
-                                name='menuId'
-                                value={formData.menuId}
-                                onChange={handleChange}
-                            />
-                            <select
-                                className="w-full p-2 border rounded text-gray-500"
-                                name='category'
-                                value={formData.category}
-                                onChange={handleChange}
-                            >
-                                <option>Selecet Category</option>
-                                <option>Soup</option>
-                                <option>Starters</option>
-                                <option>Snacks & Chaat</option>
-                                <option>Main Course</option>
-                                <option>Breads</option>
-                                <option>South Indian</option>
-                                <option>Rice</option>
-                                <option>Chinese</option>
-                                <option>Desert</option>
-                                <option>Beverages</option>
-                            </select>
-                            <input
-                                type="text"
-                                placeholder="Name"
-                                className="w-full p-2 border rounded"
-                                name='name'
-                                value={formData.name}
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="text"
-                                placeholder="ImageUrl"
-                                className="w-full p-2 border rounded"
-                                name='menuImageUrl'
-                                value={formData.menuImageUrl}
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="text"
-                                placeholder="Price"
-                                className="w-full p-2 border rounded"
-                                name='price'
-                                value={formData.price}
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="text"
-                                placeholder="Description"
-                                className="w-full p-2 border rounded"
-                                name='description'
-                                value={formData.description}
-                                onChange={handleChange}
-                            />
-                            <input
-                                type="text"
-                                placeholder="Discounted Price"
-                                className="w-full p-2 border rounded"
-                                name='discountedPrice'
-                                value={formData.discountedPrice}
-                                onChange={handleChange}
-                            />
-                            <select
-                                className="w-full p-2 border rounded text-gray-500"
-                                name='type'
-                                value={formData.type}
-                                onChange={handleChange}
-                            >
-                                <option>Selecet Type</option>
-                                <option>Veg</option>
-                                <option>Non - Veg</option>
-                            </select>
+            {
+                isPopupOpen && (
+                    <div className="fixed inset-0 z-50 flex justify-center items-center">
+                        <div className="absolute inset-0 bg-black opacity-50"></div>
+                        <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-md ">
+                            <h2 className="text-xl font-bold mb-2">Add Menu</h2>
+                            <form className="space-y-4">
+                                <input
+                                    type="text"
+                                    placeholder="Menu Id"
+                                    className="w-full p-2 border rounded"
+                                    name='menuId'
+                                    value={formData.menuId}
+                                    onChange={handleChange}
+                                />
+                                <select
+                                    className="w-full p-2 border rounded text-gray-500"
+                                    name='category'
+                                    value={formData.category}
+                                    onChange={handleChange}
+                                >
+                                    <option>Selecet Category</option>
+                                    <option>Soup</option>
+                                    <option>Starters</option>
+                                    <option>Snacks & Chaat</option>
+                                    <option>Main Course</option>
+                                    <option>Breads</option>
+                                    <option>South Indian</option>
+                                    <option>Rice</option>
+                                    <option>Chinese</option>
+                                    <option>Desert</option>
+                                    <option>Beverages</option>
+                                </select>
+                                <input
+                                    type="text"
+                                    placeholder="Name"
+                                    className="w-full p-2 border rounded"
+                                    name='name'
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="ImageUrl"
+                                    className="w-full p-2 border rounded"
+                                    name='menuImageUrl'
+                                    value={formData.menuImageUrl}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Price"
+                                    className="w-full p-2 border rounded"
+                                    name='price'
+                                    value={formData.price}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Description"
+                                    className="w-full p-2 border rounded"
+                                    name='description'
+                                    value={formData.description}
+                                    onChange={handleChange}
+                                />
+                                <input
+                                    type="text"
+                                    placeholder="Discounted Price"
+                                    className="w-full p-2 border rounded"
+                                    name='discountedPrice'
+                                    value={formData.discountedPrice}
+                                    onChange={handleChange}
+                                />
+                                <select
+                                    className="w-full p-2 border rounded text-gray-500"
+                                    name='type'
+                                    value={formData.type}
+                                    onChange={handleChange}
+                                >
+                                    <option>Selecet Type</option>
+                                    <option>Veg</option>
+                                    <option>Non - Veg</option>
+                                </select>
 
-                            <div className="flex justify-end gap-2">
-                                <Button
-                                    text="Cancel"
-                                    className="bg-gray-300 hover:bg-gray-400"
-                                    onClick={() => setIsPopupOpen(false)}
-                                />
-                                <Button
-                                    text="Save"
-                                    className="bg-amber-400 hover:bg-amber-500"
-                                    onClick={handleAddMenuClick}
-                                />
-                            </div>
-                        </form>
+                                <div className="flex justify-end gap-2">
+                                    <Button
+                                        text="Cancel"
+                                        className="bg-gray-300 hover:bg-gray-400"
+                                        onClick={() => setIsPopupOpen(false)}
+                                    />
+                                    <Button
+                                        text="Save"
+                                        className="bg-amber-400 hover:bg-amber-500"
+                                        onClick={handleAddMenuClick}
+                                    />
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            )}
-        </div>
+                )
+            }
+        </div >
     )
 }
 

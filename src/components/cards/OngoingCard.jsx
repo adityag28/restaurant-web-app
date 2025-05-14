@@ -7,7 +7,7 @@ import { db } from '../../firebase';
 import { useSelector } from 'react-redux';
 
 
-const OngoingCard = ({ menuItems }) => {
+const OngoingCard = () => {
     const [latestOrder, setLatestOrder] = useState([]);
     const navigate = useNavigate();
     const order = useSelector(store => store.order)
@@ -29,6 +29,7 @@ const OngoingCard = ({ menuItems }) => {
                     id: doc.id,
                     status: doc.data().status,
                     tableNo: doc.data().tableNo,
+                    menuNames: doc.data().menuNames
                 });
             }
         });
@@ -78,12 +79,11 @@ const OngoingCard = ({ menuItems }) => {
                             <span className="font-semibold">Stauts : </span>
                             {latestOrder.status}
                         </p>
-                        <ul className='list-disc mx-5 p-2'>
-                            {menuItems.map((menu, index) => (
-                                <li key={index}>{menu.name}</li>
+                        <ul className='list-disc list-inside mb-5 text-gray-800'>
+                            {latestOrder?.menuNames?.map((item, index) => (
+                                <li key={index}>{item}</li>
                             ))}
                         </ul>
-
                         <div className='flex gap-5'>
                             {latestOrder.status === "Served" && <Button className='p-2 my-3' text="Get Bill" onClick={handleBill} />}
                         </div>
