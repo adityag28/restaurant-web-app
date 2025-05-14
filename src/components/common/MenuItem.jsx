@@ -8,11 +8,12 @@ const MenuItem = ({ menuItems }) => {
 
     return (
         <div>
-            {
-                menuItems.map((menu, index) => (
-                    <div key={`${menu.id}-${index}`}
-                        className="flex flex-col gap-6 mt-6  w-full  ">
-                        <div className="overflow-y-auto lg:max-h-[400px] max-h-[340px] pr-2">
+            <div className="overflow-y-auto lg:max-h-[400px] max-h-[340px] pr-2">
+
+                {
+                    menuItems.map((menu, index) => (
+                        <div key={`${menu.id}-${index}`}
+                            className="flex flex-col gap-6 mt-6  w-full  ">
                             <div
                                 className="flex  sm:flex-row items-center sm:items-start sm:justify-between border-2 border-orange-400 rounded-md p-4 gap-4 shadow-md"
                             >
@@ -33,9 +34,10 @@ const MenuItem = ({ menuItems }) => {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                ))
-            }
+                    ))
+                }
+            </div>
+
         </div >
     )
 }

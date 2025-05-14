@@ -6,7 +6,7 @@ const MenuCategory = ({ menuItems, setSelectedCategory }) => {
     const singleCategory = ['All', ...categories]
 
     return (
-        <div className="flex flex-wrap gap-2 sm:gap-4 border-2 border-orange-400 rounded-md mt-6 mb-4 p-2">
+        <div className="flex flex-wrap gap-2 sm:gap-4 border-2 border-orange-400 rounded-md mt-4 mb-4 p-2">
             {singleCategory.map((category) => (
                 <p
                     key={category}

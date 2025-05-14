@@ -10,7 +10,7 @@ const Menu = () => {
 
     return (
         <div className="flex flex-col bg-amber-50 min-h-screen p-4 sm:p-6 md:p-8">
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-4">Menu</h1>
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold ">Menu</h1>
             <MenuCategory
                 menuItems={menuItems}
                 setSelectedCategory={setSelectedCategory}

@@ -2,7 +2,7 @@ import { IoSearch } from "react-icons/io5";
 
 const MenuSearch = ({ searchTerm, setSearchTerm }) => {
     return (
-        <div className="flex items-center gap-2 p-2 border-2 border-orange-400 rounded-md bg-white shadow-sm w-full mt-4">
+        <div className="flex items-center gap-2 p-2 border-2 border-orange-400 rounded-md bg-white shadow-sm w-full mb-4">
             <IoSearch className="w-5 h-5 text-gray-500" />
             <input
                 type="text"
