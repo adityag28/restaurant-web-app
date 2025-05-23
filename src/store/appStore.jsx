@@ -14,7 +14,7 @@ import menuReducer from './menuSlice';
 import customerReducer from './customerSlice';
 import orderReducer from './orderSlice'
 import userReducer from './userSlice'
-
+import qrReducer from './qrSlice'
 
 const persistConfig = {
     key: 'root',
@@ -27,7 +27,7 @@ const rootReducer = combineReducers({
     customer: customerReducer,
     order: orderReducer,
     user: userReducer,
-
+    qr: qrReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -3,9 +3,6 @@ import AddItemCounter from './AddItemCounter'
 
 const MenuItem = ({ menuItems }) => {
 
-
-
-
     return (
         <div>
             <div className="overflow-y-auto lg:max-h-[400px] max-h-[340px] pr-2">

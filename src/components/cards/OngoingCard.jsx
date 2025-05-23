@@ -18,7 +18,7 @@ const OngoingCard = () => {
     useEffect(() => {
         const q = query(
             collection(db, 'orders'),
-            orderBy('dateTime', 'desc'), // Make sure 'dateTime' is saved correctly
+            orderBy('dateTime', 'desc'),
             limit(1)
         );
 

@@ -3,7 +3,6 @@
 const OrderHistoryCard = ({ tableNo, orderId, dateTime, menus = [], totalAmount, timeToServe }) => {
 
 
-    // Format Firestore Timestamp or JS Date
     const formattedDate = dateTime instanceof Date
         ? dateTime.toLocaleString()
         : (dateTime?.toDate?.().toLocaleString?.() || 'N/A');

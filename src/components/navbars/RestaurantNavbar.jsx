@@ -93,7 +93,6 @@ const RestaurantNavbar = () => {
                 </div>
             )}
 
-            {/* 🔐 Always show sign-out icon */}
             <div className='pr-4'>
                 <NavLink to='/restaurant-login'>
                     <PiSignOutBold className='text-2xl text-white cursor-pointer' title='Sign Out' />

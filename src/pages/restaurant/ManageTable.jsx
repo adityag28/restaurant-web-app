@@ -3,12 +3,43 @@ import Button from '../../components/common/Button'
 import { Link } from 'react-router-dom'
 import { MdArrowBack } from 'react-icons/md'
 import useManageTable from '../../hooks/useManageTable'
-
+import { IoQrCode } from "react-icons/io5";
+import { useRef } from 'react';
+import { QRCodeCanvas } from 'qrcode.react';
 
 
 
 const ManageTable = () => {
-    const { isPopupOpen, setIsPopupOpen, formData, tables, handleChange, handleAddTableClick, handleUpdateTableClick, handleDeleteTableClick } = useManageTable()
+    const {
+        isPopupOpen,
+        setIsPopupOpen,
+        formData,
+        tables,
+        handleChange,
+        handleAddTableClick,
+        handleUpdateTableClick,
+        handleDeleteTableClick,
+        handleQrClick,
+        qrTableNumber,
+    } = useManageTable()
+
+    const qrCodeRef = useRef(null);
+
+    const downloadQRCode = () => {
+        if (qrCodeRef.current) {
+            const canvas = qrCodeRef.current.querySelector('canvas');
+            if (canvas) {
+                const imageUrl = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.href = imageUrl;
+                link.download = 'qr_code.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+    };
+
 
     return (
         <div className='p-5 min-h-screen bg-amber-50'>
@@ -48,6 +79,8 @@ const ManageTable = () => {
                                             onClick={() => handleUpdateTableClick(table)}
                                         />
                                         <Button text='✕' className="py-1 px-3" onClick={() => handleDeleteTableClick(table.id)} />
+                                        <Button text='QR' className='py-1 px-3' onClick={() => handleQrClick(table.tableNumber)} />
+
                                     </div>
                                 </td>
                             </tr>
@@ -112,6 +145,21 @@ const ManageTable = () => {
                     </div>
                 </div>
             )}
+            {qrTableNumber && (
+                <div className="fixed inset-0 z-50 flex justify-center items-center">
+                    <div className="absolute inset-0 bg-black opacity-50"></div>
+                    <div className="relative bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                        <h2 className="text-xl font-bold mb-4">View QR</h2>
+                        <div>
+                            <div ref={qrCodeRef}>
+                                <QRCodeCanvas value={`https://walkinqr.netlify.app/?tableId=${qrTableNumber}`} size={256} level="Q" />
+                            </div>
+                            <button onClick={downloadQRCode}>Download QR Code</button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
 
         </div>
     )

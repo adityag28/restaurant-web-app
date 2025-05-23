@@ -5,7 +5,6 @@ import Button from "./Button";
 const AddItemCounter = ({ menu }) => {
     const dispatch = useDispatch();
 
-    // Getting current quantity from Redux
     const quantity = useSelector((state) => {
         const item = state.menu.find((i) => i.id === menu.id);
         return item?.quantity || 0;

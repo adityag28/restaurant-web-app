@@ -5,10 +5,13 @@ import OtpVerificationForm from '../../components/forms/OtpVerificationForm'
 import UserNameForm from '../../components/forms/UserNameForm'
 import { useNavigate } from 'react-router-dom'
 import useCustomerLogin from '../../hooks/useCustomerLogin'
+import { useSearchParams } from 'react-router-dom';
+
 
 const CustomerLoginForm = () => {
 
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams()
 
     const {
         step,
@@ -28,6 +31,11 @@ const CustomerLoginForm = () => {
             navigate('/app');
         }
     }, [isLoggedIn, navigate]);
+
+    useEffect(() => {
+        const tableId = searchParams.get('tableId');
+        console.log(tableId)
+    }, [searchParams])
 
 
     return (

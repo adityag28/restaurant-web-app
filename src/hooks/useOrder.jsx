@@ -76,10 +76,9 @@ const useOrder = () => {
             const tableNo = 3;
             const menuNames = menuItems.map(item => item.name);
 
-            // Object for Firestore (includes serverTimestamp)
             const orderDataToSave = {
                 tableNo,
-                dateTime: serverTimestamp(), // ✅ only for Firestore
+                dateTime: serverTimestamp(),
                 menuNames,
                 totalAmount: finalAmount,
                 timeToServe: isoDateTime,
@@ -89,10 +88,9 @@ const useOrder = () => {
                 phoneNumber: user.phoneNumber,
             };
 
-            // Object for Redux (only serializable values)
             const orderDataForRedux = {
                 tableNo,
-                dateTime: isoDateTime, // ✅ ISO string is serializable
+                dateTime: isoDateTime,
                 menuNames,
                 totalAmount: finalAmount,
                 timeToServe: isoDateTime,
@@ -104,7 +102,6 @@ const useOrder = () => {
 
             const docRef = await addDoc(collection(db, 'orders'), orderDataToSave);
 
-            // Save serializable data to Redux
             dispatch(setOrder({ orderId: docRef.id, orderData: orderDataForRedux }));
 
             console.log('Order placed with ID:', docRef.id);
@@ -119,7 +116,6 @@ const useOrder = () => {
 
     const handleUpdateOrder = async (e) => {
         e.preventDefault();
-        // Here orderId is coming from redux
         if (!orderId) {
             console.log('No order ID available');
             return;

@@ -1,7 +1,4 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
-import Button from './Button'
-import { MdDeleteForever } from "react-icons/md";
 import AddItemCounter from './AddItemCounter';
 
 const AddedMenuItem = () => {

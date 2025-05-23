@@ -17,7 +17,6 @@ const OrderStatusCard = ({ tableNo, status, orderId, dateTime, menus = [], total
         }));
     };
 
-    // Format Firestore Timestamp or JS Date
     const formattedDate = dateTime instanceof Date
         ? dateTime.toLocaleString()
         : (dateTime?.toDate?.().toLocaleString?.() || 'N/A');
